@@ -1,0 +1,10 @@
+server:
+  port: 12329
+spring:
+  r2dbc:
+    url: r2dbc:oracle://localhost:1521/freepdb1
+    username: naxida
+    password: naxida521!
+
+
+

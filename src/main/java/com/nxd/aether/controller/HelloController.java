@@ -1,6 +1,8 @@
 package com.nxd.aether.controller;
 
 import com.nxd.aether.enity.Student;
+import com.nxd.aether.service.StudentService;
+import jakarta.annotation.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +26,11 @@ public class HelloController {
         return ServerResponse.ok().body(flux, String.class);
     }
 
+    @Resource
+    private StudentService studentService;
+
     public Mono<ServerResponse> student(ServerRequest request) {
-        Student a = new Student("na", "xida", "112", "1111", "12204", "p");
-        Student b = new Student("na", "xida", "112", "1111", "12204", "p1");
-        Student c = new Student("na", "xida", "112", "1111", "12204", "p2");
-        return ServerResponse.ok().contentType(MediaType.TEXT_EVENT_STREAM).body(Flux.just(a,b,c), Student.class);
+        Flux<Student> allStudents = studentService.getAllStudents().delayElements(Duration.ofSeconds(3));
+        return ServerResponse.ok().contentType(MediaType.TEXT_EVENT_STREAM).body(allStudents, Student.class);
     }
 }

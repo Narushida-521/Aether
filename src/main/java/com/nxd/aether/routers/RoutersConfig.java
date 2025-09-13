@@ -17,10 +17,10 @@ public class RoutersConfig {
         return RouterFunctions.route(
                 RequestPredicates.GET("/naxida/{date}"),
                 helloController::naxida
-        ).andRoute(RequestPredicates.GET("/student"),helloController::student);
+        ).andRoute(RequestPredicates.GET("/student"), helloController::student);
         /*
-        * If you want to define multiple routes, you need to chain them together instead of returning them separately.
-        * The RouterFunctions API provides andRoute() methods to achieve this.
-        * */
+         * If you want to define multiple routes, you need to chain them together instead of returning them separately.
+         * The RouterFunctions API provides andRoute() methods to achieve this.
+         * */
     }
 }
